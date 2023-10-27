@@ -1,7 +1,7 @@
 import api from "./axios";
 
-const deviceId = '80646F827174';
-const apiKey = 'MWRmYzM2dWlkE62C6C4C76F817CE0A3D2902F5B5D4C115E49B28CF8539114D9246505DE5D368D560D06020A92480';
+const deviceId = '4022d88e30e8';
+const apiKey = 'MWNiMjY5dWlk404459961993DCA83AE44BC6E3A6F58906952E7BECA0A5B69DC375C964915ACBC0EA536A0639CB73';
 
 export const retrieveDevice = async () => {
    return await api.get(`/device/status?id=${deviceId}&auth_key=${apiKey}`)

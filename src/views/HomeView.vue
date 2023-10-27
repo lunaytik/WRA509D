@@ -23,7 +23,8 @@ const handlePowerChange = async () => {
   }
 
   await setPowerState(0, state);
-  device.value = await retrieveDevice();
+  global.value = await retrieveDevice();
+  device.value = global.value.device_status;
   await fetchRelayData();
 }
 </script>
@@ -50,7 +51,7 @@ const handlePowerChange = async () => {
 
     <div>
       <h3>Actions to device</h3>
-      <button @click="handlePowerChange">Turn Power</button>
+      <button @click="handlePowerChange">Change Relay State</button>
     </div>
 
   </main>
