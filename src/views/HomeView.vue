@@ -13,7 +13,6 @@ watch(global, () => {
 
 const fetchRelayData = async () => {
   relay.value = device.value.relays[0];
-  console.log(relay.value);
 }
 
 onMounted( async () => {
