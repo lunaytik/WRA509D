@@ -1,19 +1,23 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref, watch} from 'vue';
 import {retrieveDevice, setPowerState} from "@/actions/shellyProvider";
 
 const global = ref('');
 const relay = ref('');
 const device = ref('');
 
+watch(global, () => {
+  device.value = global.value.device_status;
+  fetchRelayData();
+})
+
 const fetchRelayData = async () => {
   relay.value = device.value.relays[0];
+  console.log(relay.value);
 }
 
 onMounted( async () => {
   global.value = await retrieveDevice();
-  device.value = global.value.device_status;
-  await fetchRelayData();
 })
 
 const handlePowerChange = async () => {
@@ -24,8 +28,6 @@ const handlePowerChange = async () => {
 
   await setPowerState(0, state);
   global.value = await retrieveDevice();
-  device.value = global.value.device_status;
-  await fetchRelayData();
 }
 </script>
 
@@ -69,7 +71,7 @@ const handlePowerChange = async () => {
   }
 
   .relay-on {
-    color: lawngreen;
+    color: darkgreen;
   }
 
   .relay-off {
